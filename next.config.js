@@ -15,16 +15,14 @@ const nextConfig = {
         name: "fatur", /** */
         filename: "static/chunks/fatur-entry.js",
         exposes: { 
-           './module':"./src/pages/index.tsx",
+          //  './module':"./src/pages/index.tsx",
            './billing': './src/pages/billing',
            './invoices': './src/pages/invoices',
-           './settings': './src/pages/settings'
+           './settings': './src/pages/settings',
+           './module': './src/module',
         },
         remotes: {},
         shared: ["react", "react-dom"],
-        extraOptions: {
-          automaticAsyncBoundary: true,
-        },
       })
     )
     config.output.publicPath = ""
