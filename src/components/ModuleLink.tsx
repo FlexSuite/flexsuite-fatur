@@ -1,6 +1,7 @@
 import { ModuleLinkProps } from "@/interfaces/IModuleLink"
+import { isStandalone } from "@/utils/ModuleUtils"
 export function ModuleLink(props:ModuleLinkProps){
     return (
-        <a href={process.env.MODULE_PATH ?? '/revenue' + props.path}>{props.name}</a>
+        <a href={ !isStandalone() ? '/revenue' + props.path : props.path} suppressHydrationWarning>{props.name}</a>
     )
 }
