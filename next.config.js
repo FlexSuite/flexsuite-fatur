@@ -25,7 +25,7 @@ const nextConfig = {
         shared: ["react", "react-dom"],
       })
     )
-    config.output.publicPath = ""
+    config.output.publicPath = "http://localhost:3001/"
     return config
   },
 }
