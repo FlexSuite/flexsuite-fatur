@@ -1,10 +1,20 @@
 /** @type {import('next').NextConfig} */
 
-/**
- * Remote applist add
- */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const NextFederationPlugin = require("@module-federation/nextjs-mf") 
+
+/**
+ * Configurações do modulo
+ * 
+ * moduleName: Nome do modulo
+ * filename: Nome do arquivo de entrada
+ * port: Porta do modulo
+ * 
+ */
+const moduleName = 'fatur'
+const filename = `static/chunks/${moduleName}-entry.js`
+const port = 3002
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -12,20 +22,19 @@ const nextConfig = {
   webpack: (config, options) => {
     config.plugins.push(
       new NextFederationPlugin({
-        name: "fatur", /** */
-        filename: "static/chunks/fatur-entry.js",
+        name: moduleName, /** */
+        filename,
         exposes: { 
-          //  './module':"./src/pages/index.tsx",
+          './module': './src/module',
            './cobrancas': './src/pages/billing',
            './faturas': './src/pages/invoices',
            './configuracoes': './src/pages/settings',
-           './module': './src/module',
         },
         remotes: {},
         shared: ["react", "react-dom"],
       })
     )
-    config.output.publicPath = "http://localhost:3002/"
+    config.output.publicPath = `http://localhost:${port}/`
     return config
   },
 }
