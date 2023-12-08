@@ -16,16 +16,16 @@ const nextConfig = {
         filename: "static/chunks/fatur-entry.js",
         exposes: { 
           //  './module':"./src/pages/index.tsx",
-           './billing': './src/pages/billing',
-           './invoices': './src/pages/invoices',
-           './settings': './src/pages/settings',
+           './cobrancas': './src/pages/billing',
+           './faturas': './src/pages/invoices',
+           './configuracoes': './src/pages/settings',
            './module': './src/module',
         },
         remotes: {},
         shared: ["react", "react-dom"],
       })
     )
-    config.output.publicPath = "http://localhost:3001/"
+    config.output.publicPath = "http://localhost:3002/"
     return config
   },
 }

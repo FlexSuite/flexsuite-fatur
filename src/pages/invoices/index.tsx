@@ -1,4 +1,4 @@
-export default function Invoices() {
+export default function Faturas() {
   return (
     <div>Faturas</div>
   )

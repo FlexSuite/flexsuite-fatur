@@ -1,16 +1,16 @@
 import { version } from '../package.json'
-import Billing from './pages/billing'
+import Cobrancas from './pages/billing'
 import Home from './pages'
-import Invoices from './pages/invoices'
-import Settings from './pages/settings'
+import Faturas from './pages/invoices'
+import Configuracoes from './pages/settings'
 
 export const _name = 'flexsuite-fatur'
 export const _path = '/revenue'
 
 export const _version = version
 export const _pages = {
-    Billing,
+    Cobrancas,
     Home,
-    Invoices,
-    Settings,
+    Faturas,
+    Configuracoes,
 }
