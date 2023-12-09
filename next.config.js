@@ -37,31 +37,33 @@ const nextConfig = {
       })
     )
     config.output.publicPath = `http://localhost:${port}/`
-    
-    config.optimization = {
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          exclude: [filename],
-          extractComments: true,
-          terserOptions: {
-            compress: {
-              drop_console: true,
-              drop_debugger: true,
-              unused: true,
-            },
-            mangle: true,
-            module: true,
-            keep_classnames: true,
-            keep_fnames: true,
-            safari10: true,
-            output: {
-              comments: false,
-              beautify: false,
-            },
-          }
-        })
-      ]
+
+    if (process.env.NODE_ENV === 'production'){
+      config.optimization = {
+        minimize: true,
+        minimizer: [
+          new TerserPlugin({
+            exclude: [filename],
+            extractComments: true,
+            terserOptions: {
+              compress: {
+                drop_console: true,
+                drop_debugger: true,
+                unused: true,
+              },
+              mangle: true,
+              module: true,
+              keep_classnames: true,
+              keep_fnames: true,
+              safari10: true,
+              output: {
+                comments: false,
+                beautify: false,
+              },
+            }
+          })
+        ]
+      }
     }
 
     return config
