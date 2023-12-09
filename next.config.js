@@ -2,6 +2,8 @@
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const NextFederationPlugin = require("@module-federation/nextjs-mf") 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const TerserPlugin = require('terser-webpack-plugin')
 
 /**
  * Configurações do modulo
@@ -17,7 +19,7 @@ const port = 3002
 
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  // swcMinify: true,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   webpack: (config, options) => {
     config.plugins.push(
@@ -35,6 +37,33 @@ const nextConfig = {
       })
     )
     config.output.publicPath = `http://localhost:${port}/`
+    
+    config.optimization = {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          exclude: [filename],
+          extractComments: true,
+          terserOptions: {
+            compress: {
+              drop_console: true,
+              drop_debugger: true,
+              unused: true,
+            },
+            mangle: true,
+            module: true,
+            keep_classnames: true,
+            keep_fnames: true,
+            safari10: true,
+            output: {
+              comments: false,
+              beautify: false,
+            },
+          }
+        })
+      ]
+    }
+
     return config
   },
 }
